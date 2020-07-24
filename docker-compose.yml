@@ -1,0 +1,41 @@
+version: '3.3'
+
+services:
+    database:
+        image: mysql:5.7
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: japtestrootpassword
+            MYSQL_DATABASE: jap
+            MYSQL_USER: jap
+            MYSQL_PASSWORD: japtestpassword
+        ports:
+            - 3306:3306
+
+    # portainer:
+    #     image: portainer/portainer
+    #     restart: always
+    #     ports:
+    #         - 9000:9000
+
+    server:
+        build: ./server
+        command: npm run dev
+        volumes:
+            - ./server/:/usr/app
+            - /usr/app/node_modules
+        ports:
+            - 8080:8080
+        depends_on:
+            - database
+        environment:
+            DATABASE_URL: mysql://jap@database/japtestpassword
+
+    client:
+        build: ./client
+        command: npm run serve
+        volumes:
+            - ./client/:/usr/app
+            - /usr/app/node_modules
+        ports:
+            - 80:8080
