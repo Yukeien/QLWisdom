@@ -1,6 +1,7 @@
 'use strict'
 
 const express = require('express');
+const cors = require('cors');
 const { graphqlHTTP } = require('express-graphql');
 const { buildSchema } = require('graphql');
 const { PORT = '8080' } = process.env
@@ -20,6 +21,11 @@ var root = {
 
 // Express setup
 const app = express();
+
+app.use(cors({
+    origin: true,
+    credentials: true
+}));
 
 function setupExpress() {
     app.use('/graphql', graphqlHTTP({
