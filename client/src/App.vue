@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
+    <Query/>
     <HelloWorld :msg="message"/>
     <input type="text" v-model="message">
     <button @click="alertMessage">Alert</button>
@@ -8,12 +9,14 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from './components/HelloWorld.vue';
+import Query from './components/Query.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    Query
   },
   data() {
     return {
