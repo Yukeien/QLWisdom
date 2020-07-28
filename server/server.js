@@ -1,7 +1,7 @@
 'use strict'
-import { schema } from './source/schema.js';
+import { schema } from './src/schema.js';
 import { Sequelize } from 'sequelize';
-import { registerModels } from './source/database/database-tools.js';
+import { registerModels } from './src/database/database-tools.js';
 
 const express = require('express');
 const cors = require('cors');
@@ -37,7 +37,6 @@ app.use(cors({
 }));
 
 function setupExpress() {
-    console.log(schema)
     app.use('/graphql', graphqlHTTP({
         schema: schema,
         rootValue: root,
