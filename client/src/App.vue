@@ -28,42 +28,10 @@
             <br>
             <br>
             <br>
+            <div class="row">
+                <q-separator style="width: 55%" class="offset-3" color="#3c6382" inset/>
+            </div>
             <Experience/>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-                        <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
         </div>
     </div>
 </template>
@@ -96,5 +64,6 @@ export default {
 
 #main-content {
     margin-top: 60px;
+    margin-bottom: 200px;
 }
 </style>

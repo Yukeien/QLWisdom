@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueApollo from 'vue-apollo';
-import App from './App.vue';
+
+import { routes } from './routing.js';
 
 import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
@@ -19,14 +20,26 @@ const apolloClient = new ApolloClient({
 });
 
 const apolloProvider = new VueApollo({
-defaultClient: apolloClient,
+    defaultClient: apolloClient,
 });
 
 Vue.use(VueApollo);
 Vue.config.productionTip = false;
 
+console.log(routes);
+
 new Vue({
-    el: '#app',
-    apolloProvider,
-    render: h => h(App)
+    el: "#app",
+    provide: apolloProvider,
+    data: {
+        currentRoute: window.location.pathname
+    },
+    computed: {
+        viewComponent() {
+            return routes[this.currentRoute] || routes["/not-found"]
+        }
+    },
+    render(h) {
+        return h(this.viewComponent);
+    }
 });
