@@ -3,12 +3,15 @@ import Engine from './engine/Engine';
 
 function main(canvas) {
     var engine = new Engine(canvas);
-
-    var geometry = new BoxGeometry(1, 1, 1);
-    var material = new MeshBasicMaterial({ color: 0x00ff00 });
-    var cube = new Mesh(geometry, material);
     
-    engine.addObject("cube", cube);
+    let material = { color: 0x00ff00 };
+    let params = {
+        width: 1,
+        height: 1,
+        depth: 1
+    };
+
+    engine.createObject("cube", "cube", params, material);
     engine.render();
 }
 

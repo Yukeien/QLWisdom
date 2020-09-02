@@ -1,5 +1,6 @@
 import { WebGLRenderer, Scene, PerspectiveCamera } from "three";
 import ObjectManager from "./ObjectManager";
+import ObjectBuilder from "./ObjectBuilder";
 
 export default class Engine {
     constructor(canvas) {
@@ -13,6 +14,7 @@ export default class Engine {
         this.camera = new PerspectiveCamera(75, this.window.width / this.window.height, 0.1, 1000);
 
         this.manager = new ObjectManager();
+        this.builder = new ObjectBuilder();
         // todo
         this.reloadFunctions = [];
 
@@ -27,6 +29,18 @@ export default class Engine {
 
     addObject(id, object) {
         this.manager.addObject(id, object);
+    }
+
+    createObject(id, type, parameters, material) {
+        let object = this.builder.create(type, parameters, material);
+
+        if (!object) {
+            return(false);
+        }
+
+        this.manager.addObject(id, object);
+
+        return(true);
     }
 
     registerObjects() {
