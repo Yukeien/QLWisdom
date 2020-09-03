@@ -1,4 +1,4 @@
-import { WebGLRenderer, Scene, PerspectiveCamera } from "three";
+import { WebGLRenderer, Scene, PerspectiveCamera, CubeCamera } from "three";
 import ObjectManager from "./ObjectManager";
 import ObjectBuilder from "./ObjectBuilder";
 
@@ -23,6 +23,14 @@ export default class Engine {
         this.camera.position.z = 5;
     }
 
+    get getCamera() {
+        return(this.camera);
+    }
+
+    get getManager() {
+        return(this.manager);
+    }
+
     getDomElement() {
         return(this.renderer.domElement);
     }
@@ -44,6 +52,7 @@ export default class Engine {
     }
 
     registerObjects() {
+        // optimize lists to avoid parsing
         let scene = this.scene;
         let objects = this.manager.getSceneObjects();
 
@@ -57,9 +66,9 @@ export default class Engine {
 
         this.registerObjects();
 
-        let cube = this.manager.getObject("cube");
-        cube.rotation.x = time;
-        cube.rotation.y = time;
+        // let cube = this.manager.getObject("cube");
+        // cube.rotation.x = time;
+        // cube.rotation.y = time;
 
         this.renderer.render(this.scene, this.camera);
         requestAnimationFrame(this.render.bind(this));
